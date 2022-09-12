@@ -1,6 +1,6 @@
 import { Model } from 'sequelize';
 
-export default class User extends Model {
+export default class UserInfo extends Model {
   static init(sequelize, DataTypes) {
     return super.init(
       {
@@ -10,16 +10,11 @@ export default class User extends Model {
           primaryKey: true,
           autoIncrement: true,
         },
-        name: {
+        joomin_no: {
           type: DataTypes.STRING(200),
           allowNull: false,
         },
-        email: {
-          type: DataTypes.STRING(200),
-          allowNull: false,
-          unique: true,
-        },
-        password: {
+        address: {
           type: DataTypes.STRING(200),
           allowNull: false,
         },
@@ -31,7 +26,7 @@ export default class User extends Model {
   }
 
   static associate(db) {
-    db.User.hasOne(db.UserInfo);
+    db.UserInfo.belongsTo(db.User);
   }
 
 };
