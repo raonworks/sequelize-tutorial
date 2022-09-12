@@ -1,16 +1,18 @@
 import express from 'express';
 import db from './models';
+import controller from './controller';
 
 db.sequelize.sync();
 
 const router = express.Router();
 
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
   res.send('home');
 });
 
-router.get('/add', function(req, res) {
-  res.send('add');
+router.get('/add', (req, res) => {
+  controller.addUser();
+  res.send('added user');
 });
 
 module.exports = router;

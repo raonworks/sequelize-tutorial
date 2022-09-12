@@ -32,6 +32,7 @@ export default class User extends Model {
 
   static associate(db) {
     db.User.hasOne(db.UserInfo);
+    db.User.hasMany(db.Post);
   }
 
 };

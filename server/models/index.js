@@ -1,6 +1,5 @@
 'use strict';
-
-import sequelize from '../sequelized';
+import config from '../config';
 import Sequelize from 'sequelize';
 import fs from 'fs';
 import path from 'path';
@@ -8,6 +7,15 @@ import Container from 'typedi';
 
 const db = {};
 const basename = path.basename(__filename);
+
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  config
+);
+
+Container.set('sequelize', sequelize);
 
 fs.readdirSync(__dirname)
 .filter(file => {
