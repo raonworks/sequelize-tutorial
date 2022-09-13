@@ -12,21 +12,22 @@ router.get('/', async (req, res) => {
 
 router.get('/add', async (req, res) => {
   controller.addUser();
-  res.send('added user');
+  res.send('completed');
 });
 
-router.get('/get', async (req, res) => {
-  const tmp = models.User.findAll().then(users => { 
-    return users;
-   });
+router.get('/user', async (req, res) => {
+  const user = await controller.getUser();
+  res.send(user);
+});
 
-  const users = await tmp;
+router.get('/users', async (req, res) => {
+  const users = await controller.getUsers();
   users.forEach(async user => {
-    const userInfo = await user.getUserInfo();
-    console.log(userInfo);
+    //console.log((await user.getUserInfo()).id);
+    const user_info = await user.getUserInfo();
+    console.log(user_info.id);
   });
-
-  res.send('findAll');
+  res.send(users);
 });
 
 module.exports = router;

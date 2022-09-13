@@ -1,15 +1,11 @@
-import Container from "typedi";
-
-const sequelize = Container.get('sequelize');
+import models from "../models";
 
 export default new class Controller {
   async addUser() {
-    const User = Container.get('User');
-    const UserInfo = Container.get('UserInfo');
-    sequelize.transaction(async (transaction) => {
-      const user = await User.create({
+    models.sequelize.transaction(async (transaction) => {
+      const user = await models.User.create({
         name: 'kim, cheol-hong',
-        email: 'popodaddy@gmail.com',
+        email: 'guest@gmail.com',
         password: 'dev1234',
         UserInfo: {
           joomin_no: '750315-1551414',
@@ -17,7 +13,7 @@ export default new class Controller {
         }
       }, {
         transaction,
-        include: [UserInfo]
+        include: [models.UserInfo]
       });
 
       return user;
@@ -28,6 +24,24 @@ export default new class Controller {
         content: 'nothing'
       });
     });
+  }
 
+  async getUser() {
+    return models.User.findOne({
+      attributes: ['id', 'name', 'email'],
+      include: [
+        { model: models.UserInfo }, 
+        { model: models.Post }
+      ]
+    }).then(user => {
+      return user;
+    });
+  }
+
+  async getUsers() {
+    return models.User.findAll()
+    .then(users => { 
+      return users;
+    });
   }
 };
