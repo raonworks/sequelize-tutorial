@@ -10,6 +10,28 @@ router.get('/', async (req, res) => {
   res.send('home');
 });
 
+router.get('/test', async (req, res) => {
+  // models.User.findOne({
+  //   where: { id: 7 }
+  // })
+  // .then(user => { return user.getPosts() })
+  // .then(posts => { console.log(posts) });
+
+  // models.User.findOne({
+  //   where: { id: 7 },
+  //   include: [models.Post]
+  // })
+  // .then(user => { console.log(user) });
+
+  models.Post.findOne({
+    where: { id: 3 }
+  })
+  .then(post => { return post.getTags() })
+  .then(tags => console.log(tags));
+
+  res.send('test');
+});
+
 router.get('/add', async (req, res) => {
   controller.addUser();
   res.send('completed');

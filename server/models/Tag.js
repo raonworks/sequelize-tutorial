@@ -1,6 +1,6 @@
 import { Model } from 'sequelize';
 
-export default class Post extends Model {
+export default class Tag extends Model {
   static init(sequelize, DataTypes) {
     return super.init(
       {
@@ -10,11 +10,7 @@ export default class Post extends Model {
           primaryKey: true,
           autoIncrement: true,
         },
-        title: {
-          type: DataTypes.STRING(200),
-          allowNull: false,
-        },
-        content: {
+        name: {
           type: DataTypes.STRING(200),
           allowNull: false,
         },
@@ -26,9 +22,7 @@ export default class Post extends Model {
   }
 
   static associate(db) {
-    db.Post.belongsTo(db.User);
-    //db.Post.belongsToMany(db.Tag, { through: db.Post_Tag, foreignKey: 'PostId' });
-    db.Post.belongsToMany(db.Tag, { through: db.Post_Tag, foreignKey: "post_id" });
+    db.Tag.belongsToMany(db.Post, { through: 'Post_Tag', foreignKey: 'TagId' });
   }
 
 };
