@@ -21,7 +21,8 @@ export default class Post_Tag extends Model {
       },
       {
         sequelize,
-        tableName: 'Post_Tag',
+        underscored: true,
+        tableName: 'post_tag',
         createdAt: false,
         updatedAt: false
       }

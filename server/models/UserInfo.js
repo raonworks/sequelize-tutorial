@@ -21,6 +21,7 @@ export default class UserInfo extends Model {
       },
       {
         sequelize,
+        underscored: true
       }
     );
   }

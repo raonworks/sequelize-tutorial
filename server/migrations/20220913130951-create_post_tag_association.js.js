@@ -8,18 +8,18 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    queryInterface.createTable('Post_Tag', {
+    queryInterface.createTable('post_tag', {
       id: {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      PostId: {
+      post_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      TagId: {
+      tag_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
       }
@@ -33,6 +33,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable('Post_Tag');
+    await queryInterface.dropTable('post_tag');
   }
 };

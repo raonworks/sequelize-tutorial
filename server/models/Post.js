@@ -21,13 +21,13 @@ export default class Post extends Model {
       },
       {
         sequelize,
+        underscored: true
       }
     );
   }
 
   static associate(db) {
     db.Post.belongsTo(db.User);
-    //db.Post.belongsToMany(db.Tag, { through: db.Post_Tag, foreignKey: 'PostId' });
     db.Post.belongsToMany(db.Tag, { through: db.Post_Tag, foreignKey: "post_id" });
   }
 

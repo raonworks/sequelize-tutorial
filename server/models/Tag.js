@@ -17,6 +17,7 @@ export default class Tag extends Model {
       },
       {
         sequelize,
+        underscored: true
       }
     );
   }

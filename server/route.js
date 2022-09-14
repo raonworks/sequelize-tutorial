@@ -24,7 +24,7 @@ router.get('/test', async (req, res) => {
   // .then(user => { console.log(user) });
 
   models.Post.findOne({
-    where: { id: 3 }
+    where: { id: 1 }
   })
   .then(post => { return post.getTags() })
   .then(tags => console.log(tags));

@@ -26,6 +26,7 @@ export default class User extends Model {
       },
       {
         sequelize,
+        underscored: true
       }
     );
   }
